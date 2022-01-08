@@ -9,14 +9,15 @@ from yfinance import tickers
 
 # plotting done based on https://compucademy.net/getting-stock-data-using-python-and-yfinance/
 import seaborn as sns
+import matplotlib
 import matplotlib.pyplot as plt
+matplotlib.use('Agg')
 
 
 def main():
     googleTicker = yf.Ticker('GOOG')
     googleData = googleTicker.history('5y')['Close']
-    print('read data')
-
+    plt.clf()
     sns.lineplot(data=googleData)
     sns.set_theme()
     plt.xticks(rotation=30)
