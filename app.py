@@ -1,4 +1,5 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, make_response
+import base64
 import readApple
 app = Flask(__name__)
 
@@ -39,5 +40,12 @@ def uber():
 @app.route('/apple/getApple')
 def getApple():
     appleData = readApple.main()
+    with open("apple.png", "rb") as f:
+        image_binary = f.read()
+
+        response = make_response(base64.b64encode(image_binary))
+        response.headers.set('Content-Type', 'image/png')
+        response.headers.set('Content-Disposition', 'attachment', filename='image.png')
+        return response
 
 app.run()

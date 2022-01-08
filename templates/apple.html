@@ -28,16 +28,20 @@
 		<div class="homepage">
 			<h1>Apple</h1>
 			<button id="connectApple">
-				Press Here to See Apple Stocks in the Last 5 Days
+				Click Here to See Apple Stocks in the Last 5 Years
 			</button>
+			<br />
+			<img id="image" />
 			<script>
-				$("#connectApple").click(function () {
-					//NOTE: DO NOT USE WHILE TRUE
-					$.getJSON({
+				let button = document.getElementById("connectApple");
+				button.addEventListener("click", () => {
+					$.ajax({
 						url: "/apple/getApple",
-						success: function (data) {
-							console.log(data.output);
-							$("#outputText").text(data.output);
+						type: "GET",
+						contentType: "image/png",
+						success: function (result) {
+							document.getElementById("image").src =
+								"data:image/png;base64," + result;
 						}
 					});
 				});
