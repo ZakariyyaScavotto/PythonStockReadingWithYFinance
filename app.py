@@ -1,6 +1,6 @@
 from flask import Flask, render_template, jsonify, make_response
 import base64
-import readApple, readDow
+import readApple, readDow, readFacebook
 app = Flask(__name__)
 
 @app.route('/')
@@ -51,6 +51,16 @@ def getApple():
 def getDow():
     dowData = readDow.main()
     with open("dow.png", "rb") as f:
+        image_binary = f.read()
+        response = make_response(base64.b64encode(image_binary))
+        response.headers.set('Content-Type', 'image/png')
+        response.headers.set('Content-Disposition', 'attachment', filename='image.png')
+        return response
+
+@app.route('/facebook/getFacebook')
+def getFacebook():
+    dowData = readFacebook.main()
+    with open("facebook.png", "rb") as f:
         image_binary = f.read()
         response = make_response(base64.b64encode(image_binary))
         response.headers.set('Content-Type', 'image/png')
