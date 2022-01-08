@@ -12,7 +12,7 @@ import seaborn as sns
 import matplotlib
 import matplotlib.pyplot as plt
 matplotlib.use('Agg')
-
+plt.tight_layout()
 
 def main():
     dowTicker = yf.Ticker('^DJI')
@@ -22,6 +22,8 @@ def main():
     sns.set_theme()
     plt.xticks(rotation=30)
     plt.title(f'Closing Dow Jones Value')
+    plt.tight_layout()
+
     plt.savefig('dow.png')
     return dowData
 

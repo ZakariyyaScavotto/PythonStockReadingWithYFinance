@@ -12,6 +12,7 @@ import seaborn as sns
 import matplotlib
 import matplotlib.pyplot as plt
 matplotlib.use('Agg')
+plt.tight_layout()
 
 
 def main():
@@ -22,6 +23,8 @@ def main():
     sns.set_theme()
     plt.xticks(rotation=30)
     plt.title(f'Closing Tesla Value')
+    plt.tight_layout()
+
     plt.savefig('tesla.png')
     return teslaData
 

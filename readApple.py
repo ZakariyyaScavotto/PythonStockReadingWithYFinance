@@ -12,6 +12,7 @@ from yfinance import tickers
 import seaborn as sns
 import matplotlib.pyplot as plt
 matplotlib.use('Agg')
+plt.tight_layout()
 
 def main():
     appleTicker = yf.Ticker('AAPL')
@@ -21,6 +22,8 @@ def main():
     sns.set_theme()
     plt.xticks(rotation=30)
     plt.title(f'Closing Stock Prices for Apple')
+    plt.tight_layout()
+
     plt.savefig('apple.png')
     return appleData
 
