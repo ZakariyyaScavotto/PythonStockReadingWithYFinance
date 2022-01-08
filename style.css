@@ -1,0 +1,14 @@
+/* https://coolors.co/0a0903-406e8e-ef2d56-70a288-fdfffc */
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Share+Tech+Mono&display=swap");
+body {
+	background-color: #0a0903;
+	font-family: "IBM Plex Sans", sans-serif;
+}
+p,
+h1,
+h2 {
+	color: #fdfffc;
+}
+a {
+	color: #406e8e;
+}
