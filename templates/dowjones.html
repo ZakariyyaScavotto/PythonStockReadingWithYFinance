@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Home</title>
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="{{ url_for('static',filename='styles/style.css') }}"
+		/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	</head>
+	<body>
+		<!-- Navbar -->
+		<div class="topnav">
+			<a href="index.html">Home</a>
+			<a href="apple.html">Apple</a>
+			<a href="dowjones.html">Dow Jones</a>
+			<a href="facebook.html">Facebook</a>
+			<a href="google.html">Google</a>
+			<a href="tesla.html">Tesla</a>
+			<a href="uber.html">Uber</a>
+		</div>
+
+		<!-- content -->
+		<div class="homepage">
+			<h1>Dow Jones Industrial Average</h1>
+			<button id="connectDow">
+				Click Here to See Dow Jones Value in the Last 5 Years
+			</button>
+			<br />
+			<img id="image" />
+			<script>
+				let button = document.getElementById("connectDow");
+				button.addEventListener("click", () => {
+					$.ajax({
+						url: "/dowjones/getDow",
+						type: "GET",
+						contentType: "image/png",
+						success: function (result) {
+							document.getElementById("image").src =
+								"data:image/png;base64," + result;
+						}
+					});
+				});
+			</script>
+		</div>
+	</body>
+</html>
