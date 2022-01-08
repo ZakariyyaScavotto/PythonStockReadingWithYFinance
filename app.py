@@ -1,6 +1,6 @@
 from flask import Flask, render_template, jsonify, make_response
 import base64
-import readApple, readDow, readFacebook
+import readApple, readDow, readFacebook, readGoogle
 app = Flask(__name__)
 
 @app.route('/')
@@ -59,8 +59,18 @@ def getDow():
 
 @app.route('/facebook/getFacebook')
 def getFacebook():
-    dowData = readFacebook.main()
+    facebookData = readFacebook.main()
     with open("facebook.png", "rb") as f:
+        image_binary = f.read()
+        response = make_response(base64.b64encode(image_binary))
+        response.headers.set('Content-Type', 'image/png')
+        response.headers.set('Content-Disposition', 'attachment', filename='image.png')
+        return response
+
+@app.route('/google/getGoogle')
+def getGoogle():
+    googleData = readGoogle.main()
+    with open("google.png", "rb") as f:
         image_binary = f.read()
         response = make_response(base64.b64encode(image_binary))
         response.headers.set('Content-Type', 'image/png')

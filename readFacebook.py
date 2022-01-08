@@ -13,16 +13,16 @@ import matplotlib.pyplot as plt
 
 
 def main():
-    appleTicker = yf.Ticker('FB')
-    appleData = appleTicker.history('5y')['Close']
+    facebookTicker = yf.Ticker('FB')
+    facebookData = facebookTicker.history('5y')['Close']
     print('read data')
 
-    sns.lineplot(data=appleData)
+    sns.lineplot(data=facebookData)
     sns.set_theme()
     plt.xticks(rotation=30)
     plt.title(f'Closing Facebook Value')
     plt.savefig('facebook.png')
-    return appleData
+    return facebookData
 
 if __name__ == '__main__':
     main()

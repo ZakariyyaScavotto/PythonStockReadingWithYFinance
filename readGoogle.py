@@ -13,16 +13,16 @@ import matplotlib.pyplot as plt
 
 
 def main():
-    dowTicker = yf.Ticker('^DJI')
-    dowData = dowTicker.history('5y')['Close']
+    googleTicker = yf.Ticker('GOOG')
+    googleData = googleTicker.history('5y')['Close']
     print('read data')
 
-    sns.lineplot(data=dowData)
+    sns.lineplot(data=googleData)
     sns.set_theme()
     plt.xticks(rotation=30)
-    plt.title(f'Closing Dow Jones Value')
-    plt.savefig('dow.png')
-    return dowData
+    plt.title(f'Closing Google Value')
+    plt.savefig('google.png')
+    return googleData
 
 if __name__ == '__main__':
     main()
