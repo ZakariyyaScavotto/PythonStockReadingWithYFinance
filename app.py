@@ -1,6 +1,6 @@
-from flask import Flask, render_template, jsonify, make_response
+from flask import Flask, render_template, make_response
 import base64
-import readApple, readDow, readFacebook, readGoogle
+import readApple, readDow, readFacebook, readGoogle, readTesla
 app = Flask(__name__)
 
 @app.route('/')
@@ -71,6 +71,16 @@ def getFacebook():
 def getGoogle():
     googleData = readGoogle.main()
     with open("google.png", "rb") as f:
+        image_binary = f.read()
+        response = make_response(base64.b64encode(image_binary))
+        response.headers.set('Content-Type', 'image/png')
+        response.headers.set('Content-Disposition', 'attachment', filename='image.png')
+        return response
+
+@app.route('/tesla/getTesla')
+def getTesla():
+    teslaData = readTesla.main()
+    with open("tesla.png", "rb") as f:
         image_binary = f.read()
         response = make_response(base64.b64encode(image_binary))
         response.headers.set('Content-Type', 'image/png')
