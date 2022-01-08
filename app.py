@@ -1,6 +1,6 @@
 from flask import Flask, render_template, make_response
 import base64
-import readApple, readDow, readFacebook, readGoogle, readTesla
+import readApple, readDow, readFacebook, readGoogle, readTesla, readUber
 app = Flask(__name__)
 
 @app.route('/')
@@ -81,6 +81,16 @@ def getGoogle():
 def getTesla():
     teslaData = readTesla.main()
     with open("tesla.png", "rb") as f:
+        image_binary = f.read()
+        response = make_response(base64.b64encode(image_binary))
+        response.headers.set('Content-Type', 'image/png')
+        response.headers.set('Content-Disposition', 'attachment', filename='image.png')
+        return response
+
+@app.route('/uber/getUber')
+def getUber():
+    uberData = readUber.main()
+    with open("uber.png", "rb") as f:
         image_binary = f.read()
         response = make_response(base64.b64encode(image_binary))
         response.headers.set('Content-Type', 'image/png')
